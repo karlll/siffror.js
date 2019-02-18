@@ -1,2 +1,2 @@
 # siffror.js
-Parse numerical text in Swedish
+Parse cardinal numbers in Swedish

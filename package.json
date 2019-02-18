@@ -1,0 +1,30 @@
+{
+  "name": "siffror",
+  "version": "1.0.0",
+  "description": "Parse Swedish numerical text",
+  "main": "siffror.js",
+  "scripts": {
+    "build": "pegjs -o siffror-parser.js parser.pegjs",
+    "test": "jest *.test.js",
+    "watch": "jest --watch *.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karlll/siffror.js.git"
+  },
+  "keywords": [
+    "parse",
+    "numerical",
+    "swedish"
+  ],
+  "author": "Karl Larsaeus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/karlll/siffror.js/issues"
+  },
+  "homepage": "https://github.com/karlll/siffror.js#readme",
+  "devDependencies": {
+    "jest": "^24.1.0",
+    "pegjs": "^0.10.0"
+  }
+}
