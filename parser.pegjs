@@ -10,7 +10,9 @@ number = hundredToBilliard / twentyToNinetynine / tens / singles
 singles = one / two / three / four / five / six / seven / eight / nine;
 tens = ten / eleven / twelve / thirteen / fourteen / fifteen / sixteen / seventeen / eighteen / nineteen;
 twentyToNinetynine = twenty singles?/ thirty singles?/ forty singles?/ fifty singles?/ sixty singles? / seventy singles? / eighty singles? / ninety singles?
-hundredToBilliard = hundred / thousand / million / milliard / billion / billiard;
+oneToNinetynine  = twentyToNinetynine / tens / singles;
+
+hundredToBilliard = modifier:singles? hundred oneToNinetynine? / thousand / million / milliard / billion / billiard;
 
 
 one = "ett" { return insert(1);}

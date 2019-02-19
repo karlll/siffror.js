@@ -1,6 +1,8 @@
-const p = require("./siffror");
+const p = require("./siffror").parse;
+const e = require("./siffror").__eval;
+
 describe("parser", () => {
-  it.skip("should parse single digits", () => {
+  it("should parse single digits", () => {
     expect(p("ett")).toEqual(1);
     expect(p("två")).toEqual(2);
     expect(p("tre")).toEqual(3);
@@ -12,7 +14,7 @@ describe("parser", () => {
     expect(p("nio")).toEqual(9);
   });
 
-  it.skip("should parse numbers ten to nineteen", () => {
+  it("should parse numbers ten to nineteen", () => {
     expect(p("tio")).toEqual(10);
     expect(p("elva")).toEqual(11);
     expect(p("tolv")).toEqual(12);
@@ -25,7 +27,7 @@ describe("parser", () => {
     expect(p("nitton")).toEqual(19);
   });
 
-  it.skip("should parse numbers twenty to ninety-nine", () => {
+  it("should parse numbers twenty to ninety-nine", () => {
     expect(p("tjugo")).toEqual(20);
     expect(p("tjugoett")).toEqual(21);
     expect(p("tjugotvå")).toEqual(22);
@@ -54,5 +56,21 @@ describe("parser", () => {
   });
   it("should parse numbers one hundred to nine hundred ninety-nine", () => {
     expect(p("hundra")).toEqual(100);
+    expect(p("hundraett")).toEqual(101);
+    expect(p("hundratjugoett")).toEqual(121);
+    expect(p("hundrafemtioåtta")).toEqual(158);
+    expect(p("hundranittionio")).toEqual(199);
+    expect(p("femhundranittionio")).toEqual(599);
+  });
+});
+
+describe("eval", () => {
+  it("should properly evaluate hundred multiples", () => {
+    let dst = [
+      { pos: 1, v: 5 },
+      { pos: 2, v: 100 },
+      [{ pos: 3, v: 90 }, { pos: 4, v: 9 }]
+    ];
+    expect(e(dst)).toEqual(599);
   });
 });

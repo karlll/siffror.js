@@ -737,10 +737,50 @@ function peg$parse(input, options) {
     return s0;
   }
 
-  function peg$parsehundredToBilliard() {
+  function peg$parseoneToNinetynine() {
     var s0;
 
-    s0 = peg$parsehundred();
+    s0 = peg$parsetwentyToNinetynine();
+    if (s0 === peg$FAILED) {
+      s0 = peg$parsetens();
+      if (s0 === peg$FAILED) {
+        s0 = peg$parsesingles();
+      }
+    }
+
+    return s0;
+  }
+
+  function peg$parsehundredToBilliard() {
+    var s0, s1, s2, s3;
+
+    s0 = peg$currPos;
+    s1 = peg$parsesingles();
+    if (s1 === peg$FAILED) {
+      s1 = null;
+    }
+    if (s1 !== peg$FAILED) {
+      s2 = peg$parsehundred();
+      if (s2 !== peg$FAILED) {
+        s3 = peg$parseoneToNinetynine();
+        if (s3 === peg$FAILED) {
+          s3 = null;
+        }
+        if (s3 !== peg$FAILED) {
+          s1 = [s1, s2, s3];
+          s0 = s1;
+        } else {
+          peg$currPos = s0;
+          s0 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s0;
+        s0 = peg$FAILED;
+      }
+    } else {
+      peg$currPos = s0;
+      s0 = peg$FAILED;
+    }
     if (s0 === peg$FAILED) {
       s0 = peg$parsethousand();
       if (s0 === peg$FAILED) {

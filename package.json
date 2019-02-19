@@ -26,5 +26,9 @@
   "devDependencies": {
     "jest": "^24.1.0",
     "pegjs": "^0.10.0"
+  },
+  "dependencies": {
+    "lodash.find": "^4.6.0",
+    "lodash.flatten": "^4.4.0"
   }
 }
