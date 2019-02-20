@@ -61,6 +61,7 @@ describe("parser", () => {
     expect(p("hundrafemtioåtta")).toEqual(158);
     expect(p("hundranittionio")).toEqual(199);
     expect(p("femhundranittionio")).toEqual(599);
+    expect(p("niohundranittionio")).toEqual(999);
   });
 });
 
@@ -72,5 +73,11 @@ describe("eval", () => {
       [{ pos: 3, v: 90 }, { pos: 4, v: 9 }]
     ];
     expect(e(dst)).toEqual(599);
+    dst = [
+      { pos: 1, v: 9 },
+      { pos: 2, v: 100 },
+      [{ pos: 3, v: 90 }, { pos: 4, v: 9 }]
+    ];
+    expect(e(dst)).toEqual(999);
   });
 });
