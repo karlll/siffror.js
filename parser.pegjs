@@ -5,15 +5,18 @@
 
 
 start = number
-number = hundredToBilliard / twentyToNinetynine / tens / singles
+number = thousands / hundreds / twentyToNinetynine / teens / singles;
 
 singles = one / two / three / four / five / six / seven / eight / nine;
-tens = ten / eleven / twelve / thirteen / fourteen / fifteen / sixteen / seventeen / eighteen / nineteen;
+teens = ten / eleven / twelve / thirteen / fourteen / fifteen / sixteen / seventeen / eighteen / nineteen;
 twentyToNinetynine = twenty singles?/ thirty singles?/ forty singles?/ fifty singles?/ sixty singles? / seventy singles? / eighty singles? / ninety singles?
-oneToNinetynine  = twentyToNinetynine / tens / singles;
+oneToNinetynine  = twentyToNinetynine / teens / singles;
 
-hundredToBilliard = modifier:singles? hundred oneToNinetynine? / thousand / million / milliard / billion / billiard;
-
+//hundredToBilliard = hundreds / thousand / million / milliard / billion / billiard;
+hundreds = singles? hundred oneToNinetynine? // 100 - 999
+thousands = hundreds? thousand hundreds? // 1000 - 999 999
+millions = hundreds? million? thousands? // 1 000 000 - 999 999 999
+milliards = hundreds? milliard millions? // 1 000 000 000 - 999 999 999 999
 
 one = "ett" { return insert(1);}
 two = "två" { return insert(2);}

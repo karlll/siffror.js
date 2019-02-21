@@ -1,7 +1,7 @@
 "use strict";
 
 const p = require("./siffror-parser").parse;
-const flatten = require("lodash.flatten");
+const flatten = require("lodash.flattendeep");
 const find = require("lodash.find");
 
 const magnitudes = [100, 1000, 1000000, 1000000000];
@@ -23,16 +23,12 @@ const __eval = dst => {
     return dst.v;
   }
 
-  const vals = flatten(dst);
+  const vals = flatten(dst).filter(e => e !== null);
   let subTot = 0;
   let initialized = false;
   const val = [];
 
   for (let i = 0; i < vals.length; i++) {
-    if (vals[i] === null) {
-      continue;
-    }
-
     let current = vals[i].v;
 
     if (!initialized) {

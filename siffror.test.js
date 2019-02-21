@@ -63,6 +63,9 @@ describe("parser", () => {
     expect(p("femhundranittionio")).toEqual(599);
     expect(p("niohundranittionio")).toEqual(999);
   });
+  it("should parse numbers one thousand to 999 999", () => {
+    expect(p("tusen")).toEqual(1000);
+  });
 });
 
 describe("eval", () => {

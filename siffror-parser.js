@@ -491,13 +491,16 @@ function peg$parse(input, options) {
   function peg$parsenumber() {
     var s0;
 
-    s0 = peg$parsehundredToBilliard();
+    s0 = peg$parsethousands();
     if (s0 === peg$FAILED) {
-      s0 = peg$parsetwentyToNinetynine();
+      s0 = peg$parsehundreds();
       if (s0 === peg$FAILED) {
-        s0 = peg$parsetens();
+        s0 = peg$parsetwentyToNinetynine();
         if (s0 === peg$FAILED) {
-          s0 = peg$parsesingles();
+          s0 = peg$parseteens();
+          if (s0 === peg$FAILED) {
+            s0 = peg$parsesingles();
+          }
         }
       }
     }
@@ -537,7 +540,7 @@ function peg$parse(input, options) {
     return s0;
   }
 
-  function peg$parsetens() {
+  function peg$parseteens() {
     var s0;
 
     s0 = peg$parseten();
@@ -742,7 +745,7 @@ function peg$parse(input, options) {
 
     s0 = peg$parsetwentyToNinetynine();
     if (s0 === peg$FAILED) {
-      s0 = peg$parsetens();
+      s0 = peg$parseteens();
       if (s0 === peg$FAILED) {
         s0 = peg$parsesingles();
       }
@@ -751,7 +754,7 @@ function peg$parse(input, options) {
     return s0;
   }
 
-  function peg$parsehundredToBilliard() {
+  function peg$parsehundreds() {
     var s0, s1, s2, s3;
 
     s0 = peg$currPos;
@@ -781,20 +784,110 @@ function peg$parse(input, options) {
       peg$currPos = s0;
       s0 = peg$FAILED;
     }
-    if (s0 === peg$FAILED) {
-      s0 = peg$parsethousand();
-      if (s0 === peg$FAILED) {
-        s0 = peg$parsemillion();
-        if (s0 === peg$FAILED) {
-          s0 = peg$parsemilliard();
-          if (s0 === peg$FAILED) {
-            s0 = peg$parsebillion();
-            if (s0 === peg$FAILED) {
-              s0 = peg$parsebilliard();
-            }
-          }
+
+    return s0;
+  }
+
+  function peg$parsethousands() {
+    var s0, s1, s2, s3;
+
+    s0 = peg$currPos;
+    s1 = peg$parsehundreds();
+    if (s1 === peg$FAILED) {
+      s1 = null;
+    }
+    if (s1 !== peg$FAILED) {
+      s2 = peg$parsethousand();
+      if (s2 !== peg$FAILED) {
+        s3 = peg$parsehundreds();
+        if (s3 === peg$FAILED) {
+          s3 = null;
         }
+        if (s3 !== peg$FAILED) {
+          s1 = [s1, s2, s3];
+          s0 = s1;
+        } else {
+          peg$currPos = s0;
+          s0 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s0;
+        s0 = peg$FAILED;
       }
+    } else {
+      peg$currPos = s0;
+      s0 = peg$FAILED;
+    }
+
+    return s0;
+  }
+
+  function peg$parsemillions() {
+    var s0, s1, s2, s3;
+
+    s0 = peg$currPos;
+    s1 = peg$parsehundreds();
+    if (s1 === peg$FAILED) {
+      s1 = null;
+    }
+    if (s1 !== peg$FAILED) {
+      s2 = peg$parsemillion();
+      if (s2 === peg$FAILED) {
+        s2 = null;
+      }
+      if (s2 !== peg$FAILED) {
+        s3 = peg$parsethousands();
+        if (s3 === peg$FAILED) {
+          s3 = null;
+        }
+        if (s3 !== peg$FAILED) {
+          s1 = [s1, s2, s3];
+          s0 = s1;
+        } else {
+          peg$currPos = s0;
+          s0 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s0;
+        s0 = peg$FAILED;
+      }
+    } else {
+      peg$currPos = s0;
+      s0 = peg$FAILED;
+    }
+
+    return s0;
+  }
+
+  function peg$parsemilliards() {
+    var s0, s1, s2, s3;
+
+    s0 = peg$currPos;
+    s1 = peg$parsehundreds();
+    if (s1 === peg$FAILED) {
+      s1 = null;
+    }
+    if (s1 !== peg$FAILED) {
+      s2 = peg$parsemilliard();
+      if (s2 !== peg$FAILED) {
+        s3 = peg$parsemillions();
+        if (s3 === peg$FAILED) {
+          s3 = null;
+        }
+        if (s3 !== peg$FAILED) {
+          s1 = [s1, s2, s3];
+          s0 = s1;
+        } else {
+          peg$currPos = s0;
+          s0 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s0;
+        s0 = peg$FAILED;
+      }
+    } else {
+      peg$currPos = s0;
+      s0 = peg$FAILED;
     }
 
     return s0;
