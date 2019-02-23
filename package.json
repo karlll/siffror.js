@@ -1,6 +1,6 @@
 {
   "name": "siffror.js",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Parse Swedish numerical text (cardinal numbers)",
   "main": "siffror.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "parse",
     "cardinal",
     "numerical",
-    "swedish"
+    "swedish",
+    "nlp"
   ],
   "author": "Karl Larsaeus <karl@ninjacontrol.com>",
   "license": "MIT",

@@ -45,6 +45,15 @@ const __eval = dst => {
   return val.reduce((acc, v) => acc + v, 0);
 };
 
+/**
+ * Parse a string of cardinal text (swedish).
+ * Supports positive integers.
+ * Whitespace should be removed from the input.
+ * Throws error on failure.
+ *
+ * @param string input string
+ * @returns number resulting integer
+ */
 const parse = string => {
   const scanned = s(string);
   if (Array.isArray(scanned.res) && scanned.res.length > 0) {
