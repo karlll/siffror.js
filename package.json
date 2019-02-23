@@ -1,10 +1,9 @@
 {
-  "name": "siffror",
-  "version": "1.0.0",
-  "description": "Parse Swedish numerical text",
+  "name": "siffror.js",
+  "version": "0.9.0",
+  "description": "Parse Swedish numerical text (cardinal numbers)",
   "main": "siffror.js",
   "scripts": {
-    "build": "pegjs -o siffror-parser.js parser.pegjs",
     "test": "jest *.test.js",
     "watch": "jest --watch *.test.js"
   },
@@ -14,22 +13,20 @@
   },
   "keywords": [
     "parse",
+    "cardinal",
     "numerical",
     "swedish"
   ],
-  "author": "Karl Larsaeus",
+  "author": "Karl Larsaeus <karl@ninjacontrol.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/karlll/siffror.js/issues"
   },
   "homepage": "https://github.com/karlll/siffror.js#readme",
   "devDependencies": {
-    "jest": "^24.1.0",
-    "pegjs": "^0.10.0"
+    "jest": "^24.1.0"
   },
   "dependencies": {
-    "lodash.find": "^4.6.0",
-    "lodash.flatten": "^4.4.0",
-    "lodash.flattendeep": "^4.4.0"
+    "lodash.find": "^4.6.0"
   }
 }

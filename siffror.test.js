@@ -57,6 +57,7 @@ describe("parser", () => {
   it("should parse numbers one hundred to nine hundred ninety-nine", () => {
     expect(p("hundra")).toEqual(100);
     expect(p("hundraett")).toEqual(101);
+    expect(p("etthundraett")).toEqual(101);
     expect(p("hundratjugoett")).toEqual(121);
     expect(p("hundrafemtioåtta")).toEqual(158);
     expect(p("hundranittionio")).toEqual(199);
@@ -65,22 +66,47 @@ describe("parser", () => {
   });
   it("should parse numbers one thousand to 999 999", () => {
     expect(p("tusen")).toEqual(1000);
+    expect(p("etttusenniohundranittionio")).toEqual(1999);
+    expect(p("åttahundraåttioåttatusenåttahundraåttioåtta")).toEqual(888888);
+    expect(p("niohundranittioniotusenniohundranittionio")).toEqual(999999);
+  });
+  it("should parse numbers 1 million and beyond", () => {
+    expect(p("enmiljon")).toEqual(1000000);
+    expect(p("tremiljonertrehundratusen")).toEqual(3300000);
+    expect(p("femtonmiljarder")).toEqual(15000000000);
   });
 });
 
 describe("eval", () => {
   it("should properly evaluate hundred multiples", () => {
     let dst = [
-      { pos: 1, v: 5 },
-      { pos: 2, v: 100 },
-      [{ pos: 3, v: 90 }, { pos: 4, v: 9 }]
+      { p: 1, v: 5 },
+      { p: 2, v: 100 },
+      { p: 3, v: 90 },
+      { p: 4, v: 9 }
     ];
     expect(e(dst)).toEqual(599);
-    dst = [
-      { pos: 1, v: 9 },
-      { pos: 2, v: 100 },
-      [{ pos: 3, v: 90 }, { pos: 4, v: 9 }]
-    ];
+    dst = [{ p: 1, v: 9 }, { p: 2, v: 100 }, { p: 3, v: 90 }, { p: 4, v: 9 }];
     expect(e(dst)).toEqual(999);
+    dst = [
+      { p: 1, v: 8 },
+      { p: 2, v: 100 },
+      { p: 3, v: 80 },
+      { p: 4, v: 8 },
+      { p: 5, v: 1000 }
+    ];
+    expect(e(dst)).toEqual(888000);
+    dst = [
+      { p: 1, v: 8 },
+      { p: 2, v: 100 },
+      { p: 3, v: 80 },
+      { p: 4, v: 8 },
+      { p: 5, v: 1000 },
+      { p: 6, v: 8 },
+      { p: 7, v: 100 },
+      { p: 8, v: 80 },
+      { p: 9, v: 8 }
+    ];
+    expect(e(dst)).toEqual(888888);
   });
 });
