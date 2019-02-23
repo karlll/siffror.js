@@ -1,5 +1,6 @@
 "use strict";
 
+// Use PEG to parse valid cardinal numbers (WIP)
 const p = require("./siffror-parser").parse;
 const flatten = require("lodash.flattendeep");
 const find = require("lodash.find");
