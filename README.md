@@ -8,7 +8,7 @@ Parse cardinal numbers in Swedish
 ## Usage
 
 ```javascript
-    const s = require('siffor.js');
+    const s = require('siffror.js');
     const res = s.parse("åttahundraåttioåttatusenåttahundraåttioåtta");
     console.log(res);
     // > 888888
@@ -24,6 +24,6 @@ MIT
 
 ## Author
 
-Karl Larsaeus, <karl@ninjacontrol.com>
+Karl Larsaeus, &lt;karl@ninjacontrol.com&gt;
 
 
